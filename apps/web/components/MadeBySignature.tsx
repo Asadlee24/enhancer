@@ -46,11 +46,11 @@ export default function MadeBySignature({ width = 340, height = 80 }: MadeBySign
 
     async function init() {
       const THREE = await import('three');
-      const { TextGeometry } = await import(
-        'three/examples/jsm/geometries/TextGeometry.js'
+      const { TextGeometry } = await import('three/examples/jsm/geometries/TextGeometry.js').catch(
+        () => import('three/addons/geometries/TextGeometry.js' as any)
       );
-      const { FontLoader } = await import(
-        'three/examples/jsm/loaders/FontLoader.js'
+      const { FontLoader } = await import('three/examples/jsm/loaders/FontLoader.js').catch(
+        () => import('three/addons/loaders/FontLoader.js' as any)
       );
 
       if (destroyed || !canvasRef.current) return;
