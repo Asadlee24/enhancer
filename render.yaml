@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: patch-api
+    env: node
+    region: oregon
+    plan: free
+    rootDir: apps/server
+    buildCommand: cd ../.. && npm install && npm --workspace=@patch/mp4-atoms run build && npm --workspace=@patch/server run build
+    startCommand: node dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MAX_UPLOAD_SIZE_MB
+        value: 500
+      - key: FILE_TTL_SECONDS
+        value: 300
+      - key: HEARTBEAT_TIMEOUT_SECONDS
+        value: 30
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: CLIENT_ORIGIN
+        sync: false
