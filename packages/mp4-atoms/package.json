@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "node --test dist/tests/mp4-atoms.test.js"
+    "prepare": "tsc",
+    "test": "tsc -p tsconfig.test.json && node --test dist-test/tests/mp4-atoms.test.js"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
